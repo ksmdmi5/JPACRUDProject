@@ -15,8 +15,6 @@ public class TKDClient {
 
 		TKD tkd = em.find(TKD.class, 1);
 		System.out.println(tkd);
-				
-		// No memory leaks...
 		em.close();
 		emf.close();
 
