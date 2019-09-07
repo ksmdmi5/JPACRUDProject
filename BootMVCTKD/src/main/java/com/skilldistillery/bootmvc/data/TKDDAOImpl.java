@@ -21,40 +21,47 @@ public class TKDDAOImpl implements TKDDAO {
 	public TKD findById(int id) {
 		return em.find(TKD.class, id);
 	}
+	
 	@Override
-	public TKD findByTech(String technique) {
-		return em.find(TKD.class, technique);
+	public List<TKD> findByTech(String technique) {
+		String query = "SELECT tkd FROM TKD tkd WHERE technique "
+				+ "LIKE :technique";
+		List<TKD> tkd = (List<TKD>) em.createQuery(query, TKD.class)
+										 .setParameter("technique", "%"+technique+"%")
+										 .getResultList();
+		System.out.println(tkd);
+ 		return tkd;
 	}
 
 	@Override
 	public List<TKD> findByBelt(String belt) {
 		String query = "SELECT tkd FROM TKD tkd WHERE belt "
 				+ "LIKE CONCAT('%',:belt,'%') ORDER BY belt";
-		List<TKD> belts = (List<TKD>) em.createQuery(query, TKD.class)
+		List<TKD> tkd = (List<TKD>) em.createQuery(query, TKD.class)
 										 .setParameter("belt", belt)
 										 .getResultList();
-		System.out.println(belts);
- 		return belts;
+		System.out.println(tkd);
+ 		return tkd;
 	}
 	
 	@Override
 	public List<TKD> findByType(String type) {
 		String query = "SELECT tkd FROM TKD tkd WHERE type "
 				+ "LIKE CONCAT ('%',:type,'%') ORDER BY type";
-		List<TKD> types = (List<TKD>) em.createQuery(query, TKD.class)
+		List<TKD> tkd = (List<TKD>) em.createQuery(query, TKD.class)
 										.setParameter("type", type)
 										.getResultList();
-		return types;
+		return tkd;
 	}
 
 	@Override
 	public List<TKD> findByKeyword(String keyword) {
 		String query = "SELECT tkd FROM TKD tkd WHERE technique "
 				+ "LIKE CONCAT ('%',:keyword,'%')";
-		List<TKD> techs = (List<TKD>) em.createQuery(query, TKD.class)
+		List<TKD> tkd = (List<TKD>) em.createQuery(query, TKD.class)
 										.setParameter("keyword", keyword)	
 										.getResultList();
-		return techs;
+		return tkd;
 	}
 
 	@Override
@@ -102,9 +109,9 @@ public class TKDDAOImpl implements TKDDAO {
 
 	@Override
 	public List<TKD> findAll() {
-		String query = "SELECT technique FROM TKD technique " + "ORDER BY id";
-		List<TKD> tech = em.createQuery(query, TKD.class).getResultList();
-		return tech;
+		String query = "SELECT tkd FROM TKD tkd " + "ORDER BY id";
+//		List<TKD> tech = 
+		return em.createQuery(query, TKD.class).getResultList();
 	}
 
 }

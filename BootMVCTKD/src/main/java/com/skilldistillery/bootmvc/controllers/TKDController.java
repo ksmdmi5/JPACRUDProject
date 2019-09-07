@@ -26,14 +26,6 @@ public class TKDController {
 		return "index"; // if using a ViewResolver.
 	}
 
-	@RequestMapping(path = "getBelt.do")
-	public String showBelt(@RequestParam("belt") String belt, Model model) {
-		List<TKD> tkd = dao.findByBelt(belt);
-		model.addAttribute("tkd", tkd);
-//        return "WEB-INF/film/show.jsp";
-		return "tkd/show";
-	}
-
 	@RequestMapping(path = "addTKD.do", method = RequestMethod.GET)
 	public ModelAndView addTech() {
 		ModelAndView mv = new ModelAndView();
@@ -50,7 +42,7 @@ public class TKDController {
 		return mv;
 	}
 
-	@RequestMapping(path = "editTKD.do", method = RequestMethod.POST)
+	@RequestMapping(path = "editTKD.do", method = RequestMethod.GET)
 	public ModelAndView updateTKD(@RequestParam("id") int id, Model model) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("tkd", dao.findById(id));
@@ -78,5 +70,41 @@ public class TKDController {
 	}
 	return mv;
 	}
-	
+	@RequestMapping(path = "showAll.do")
+	public String showAll(Model model) {
+		List<TKD> tkd = dao.findAll();
+		model.addAttribute("tkd", tkd);
+		return "tkd/showAll";
+	}
+	@RequestMapping(path = "searchBelt.do")
+	public String searchBelt(@RequestParam("belt") String belt, Model model) {
+		List<TKD> tkd = dao.findByBelt(belt);
+		model.addAttribute("tkd", tkd);
+//        return "WEB-INF/film/show.jsp";
+		return "tkd/show";
+	}
+	@RequestMapping(path="searchType.do", method = RequestMethod.GET)
+	public String searchType(@RequestParam("type") String type, Model model) {
+		List<TKD> tkd = dao.findByType(type);
+		model.addAttribute("tkd", tkd);
+		return "tkd/show";
+	}
+	@RequestMapping(path="searchKeyword.do", method = RequestMethod.GET)
+	public String searchKeyword(@RequestParam("keyword") String keyword, Model model) {
+		List<TKD> tkd = dao.findByKeyword(keyword);
+		model.addAttribute("tkd", tkd);
+		return "tkd/show";
+	}
+	@RequestMapping(path="searchTech.do", method = RequestMethod.GET)
+	public String searchTech(@RequestParam("technique") String technique, Model model) {
+		List<TKD> tkd = dao.findByTech(technique);
+		model.addAttribute("tkd", tkd);
+		return "tkd/show";
+	}
+	@RequestMapping(path = "getTKD.do")
+	public String showTKD(@RequestParam("id") int id, Model model) {
+		TKD tkd = dao.findById(id);
+		model.addAttribute("tkd", tkd);
+		return "tkd/show";
+	}
 }	

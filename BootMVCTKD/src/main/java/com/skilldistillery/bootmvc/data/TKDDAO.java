@@ -5,7 +5,7 @@ import java.util.List;
 import com.skilldistillery.tkd.entities.TKD;
 
 public interface TKDDAO {
-	public TKD findByTech(String technique);
+	public List<TKD> findByTech(String technique);
 	public List<TKD> findAll();
 	public List<TKD> findByBelt(String belt);
 	public List<TKD> findByType(String type);

@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"
-	prefix="c"%>    
+	prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Show</title>
+<title>Show Curriculum</title>
 </head>
 <body>
-<h3>Displaying Results</h3>
-<ul>
+	<ul>
 		<c:forEach items="${tkd}" var="tkd">
 			<li><a href="getTKD.do?id=${tkd.id }">${tkd.technique}</a></li>
 		</c:forEach>
