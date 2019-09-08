@@ -4,9 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Deletion Error</title>
 </head>
 <body>
-
+	<h3>Unable to delete technique.</h3>
+	<form action="home.do">
+	<input type="submit" value="Return to Home"/>
+	</form>
 </body>
 </html>

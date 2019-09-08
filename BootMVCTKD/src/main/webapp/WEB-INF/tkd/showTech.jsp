@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Belt</title>
+<title>Technique</title>
 </head>
 <body>
 	<ul>

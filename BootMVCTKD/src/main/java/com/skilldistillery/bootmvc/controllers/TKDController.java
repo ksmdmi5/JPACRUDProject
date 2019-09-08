@@ -35,15 +35,15 @@ public class TKDController {
 
 	@RequestMapping(path = "addTKD.do", method = RequestMethod.POST)
 	public ModelAndView addNewTKD(TKD tkd) {
-		TKD newTkd = dao.addTKD(tkd);
+		TKD newTKD = dao.addTKD(tkd);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("tkd", newTkd);
+		mv.addObject("tkd", newTKD);
 		mv.setViewName("tkd/show");
 		return mv;
 	}
 
 	@RequestMapping(path = "editTKD.do", method = RequestMethod.GET)
-	public ModelAndView updateTKD(@RequestParam("id") int id, Model model) {
+	public ModelAndView editTKD(@RequestParam("id") int id, Model model) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("tkd", dao.findById(id));
 		mv.setViewName("tkd/editTKD");
@@ -64,7 +64,7 @@ public class TKDController {
 	System.out.println(tkd);
 	boolean isDeleted = dao.deleteTKD(id, tkd);
 	if (isDeleted) {
-		mv.setViewName("tkd/deletedTKD");
+		mv.setViewName("tkd/deleteTKD");
 	} else {
 		mv.setViewName("tkd/error");
 	}
@@ -81,7 +81,7 @@ public class TKDController {
 		List<TKD> tkd = dao.findByBelt(belt);
 		model.addAttribute("tkd", tkd);
 //        return "WEB-INF/film/show.jsp";
-		return "tkd/show";
+		return "tkd/showBelt";
 	}
 	@RequestMapping(path="searchType.do", method = RequestMethod.GET)
 	public String searchType(@RequestParam("type") String type, Model model) {
@@ -93,13 +93,13 @@ public class TKDController {
 	public String searchKeyword(@RequestParam("keyword") String keyword, Model model) {
 		List<TKD> tkd = dao.findByKeyword(keyword);
 		model.addAttribute("tkd", tkd);
-		return "tkd/show";
+		return "tkd/showKeyword";
 	}
 	@RequestMapping(path="searchTech.do", method = RequestMethod.GET)
 	public String searchTech(@RequestParam("technique") String technique, Model model) {
 		List<TKD> tkd = dao.findByTech(technique);
 		model.addAttribute("tkd", tkd);
-		return "tkd/show";
+		return "tkd/showTech";
 	}
 	@RequestMapping(path = "getTKD.do")
 	public String showTKD(@RequestParam("id") int id, Model model) {

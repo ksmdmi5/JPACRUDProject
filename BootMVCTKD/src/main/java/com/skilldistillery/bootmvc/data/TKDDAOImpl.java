@@ -36,7 +36,7 @@ public class TKDDAOImpl implements TKDDAO {
 	@Override
 	public List<TKD> findByBelt(String belt) {
 		String query = "SELECT tkd FROM TKD tkd WHERE belt "
-				+ "LIKE CONCAT('%',:belt,'%') ORDER BY belt";
+				+ "LIKE CONCAT('%',:belt,'%') ORDER BY id";
 		List<TKD> tkd = (List<TKD>) em.createQuery(query, TKD.class)
 										 .setParameter("belt", belt)
 										 .getResultList();
@@ -88,7 +88,7 @@ public class TKDDAOImpl implements TKDDAO {
 	@Override
 	public boolean deleteTKD(int id, TKD tkd) {
 		try {
-			em.remove(tkd);
+			em.remove(em.find(TKD.class, id));
 		} catch (Exception e) {
 			return false;
 		}
@@ -110,7 +110,6 @@ public class TKDDAOImpl implements TKDDAO {
 	@Override
 	public List<TKD> findAll() {
 		String query = "SELECT tkd FROM TKD tkd " + "ORDER BY id";
-//		List<TKD> tech = 
 		return em.createQuery(query, TKD.class).getResultList();
 	}
 
