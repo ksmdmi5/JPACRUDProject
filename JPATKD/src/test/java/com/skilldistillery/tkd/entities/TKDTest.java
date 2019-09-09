@@ -42,7 +42,12 @@ class TKDTest {
 
 	@Test
 	void test_TKD_entity_mapping() {
-		assertNotNull(tkd);
+		assertEquals(1, tkd.getId());
+		assertEquals("Front Punch", tkd.getTechnique());
+		assertTrue(tkd.getDescription().startsWith("Using a "));
+		assertEquals("Strike", tkd.getType());
+		assertEquals("White Belt", tkd.getBelt());
+
 	}
 
 }
